@@ -33,9 +33,9 @@
         bindings = <&kp>, <&kp>;
     };
 
-    lt: spacebar_layer_tap {
+    lt: layer_tap {
         compatible = "zmk,behavior-hold-tap"; 
-        label = "SPACE_LAYER_TAP"; 
+        label = "LAYER_TAP"; 
         #binding-cells = <2>; 
         flavor = "tap-preferred"; 
         tapping-term-ms = <200>; 
@@ -44,8 +44,9 @@
         bindings = <&mo>, <&kp>; 
     };
 
-    tdsh:  tap_dance_shift {
+    tdsh: tap_dance_shift {
       compatible = "zmk,behavior-tap-dance";
+      label = "TAP_DANCE_SHIFT";
       #binding-cells = <0>;
       tapping-term-ms = <200>;
       bindings = <&caps_word>, <&kp CAPS>;
@@ -54,7 +55,6 @@
 
     keymap {
         compatible = "zmk,keymap";
-
 
         default_layer {
             bindings = <
@@ -115,6 +115,5 @@
   &none         &none         &none         &none         &none                                &none   &none   &none                       &none   &none   &none                               &none       &none      &none      &none      &none
             >;
         };
-
     };
 };
