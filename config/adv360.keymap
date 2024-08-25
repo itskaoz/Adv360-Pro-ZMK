@@ -10,6 +10,7 @@
 #define FUNCTION 2
 #define MOD      3
 #define GAMING   4
+#define NAV      5
 
 #include <behaviors.dtsi>
 #include <dt-bindings/zmk/keys.h>
@@ -31,6 +32,24 @@
         flavor = "tap-preferred";
         bindings = <&kp>, <&kp>;
     };
+
+    lt: spacebar_layer_tap {
+        compatible = "zmk,behavior-hold-tap"; 
+        label = "SPACE_LAYER_TAP"; 
+        #binding-cells = <2>; 
+        flavor = "tap-preferred"; 
+        tapping-term-ms = <200>; 
+        quick-tap-ms = <125>; 
+        global-quick-tap; 
+        bindings = <&mo>, <&kp>; 
+    };
+
+    tdsh:  tap_dance_shift {
+      compatible = "zmk,behavior-tap-dance";
+      #binding-cells = <0>;
+      tapping-term-ms = <200>;
+      bindings = <&caps_word>, <&kp CAPS>;
+    };
   };
 
     keymap {
@@ -39,11 +58,11 @@
 
         default_layer {
             bindings = <
-     &kp EQUAL      &kp N1      &kp N2       &kp N3       &kp N4  &kp N5         &tog KEYPAD                                                                 &mo MOD  &kp N6  &kp N7        &kp N8       &kp N9      &kp N0         &kp MINUS
-       &kp TAB       &kp Q       &kp W        &kp E        &kp R   &kp T         &to DEFAULT                                                                   &none   &kp Y   &kp U        &kp I        &kp O       &kp P          &kp BSLH
-       &kp ESC  &hm LGUI A  &hm LALT S  &hm LSHFT D  &hm LCTRL F   &kp G          &to GAMING  &kp LCTRL  &kp LALT                  &kp RALT   &kp RCTRL        &none   &kp H   &hm RCTRL J  &hm RSHFT K  &hm RALT L  &hm RGUI SEMI  &kp SQT
-     &kp LSHFT       &kp Z       &kp X        &kp C        &kp V   &kp B                                 &kp HOME                  &kp PG_UP                           &kp N   &kp M        &kp COMMA    &kp DOT     &kp FSLH       &kp RSHFT
-  &mo FUNCTION   &kp GRAVE    &kp LGUI     &kp LEFT    &kp RIGHT                    &kp BSPC    &kp DEL   &kp END                  &kp PG_DN  &kp ENTER    &kp SPACE           &kp UP       &kp DOWN     &kp LBKT    &kp RBKT       &mo FUNCTION
+         &tdsh      &kp N1      &kp N2       &kp N3       &kp N4          &kp N5     &tog KEYPAD                                                         &mo MOD    &kp N6          &kp N7       &kp N8       &kp N9      &kp N0         &tdsh
+       &kp TAB       &kp Q       &kp W        &kp E        &kp R           &kp T     &to DEFAULT                                                         &none      &kp Y           &kp U        &kp I        &kp O       &kp P          &kp BSLH
+       &kp ESC  &hm LGUI A  &hm LALT S  &hm LSHFT D  &hm LCTRL F  &lt FUNCTION G      &to GAMING  &kp LCTRL      &kp LALT          &kp RALT   &kp RCTRL  &none      &lt FUNCTION H  &hm RCTRL J  &hm RSHFT K  &hm LALT L  &hm RGUI SEMI  &kp SQT
+     &kp MINUS       &kp Z       &kp X        &kp C        &kp V           &kp B                                 &kp HOME          &kp PG_UP                        &kp N           &kp M        &kp COMMA    &kp DOT     &kp FSLH       &kp EQUAL
+  &mo FUNCTION   &kp GRAVE    &kp LPAR     &kp LBKT    &kp LBRC                        &kp BSPC    &lt NAV DEL   &kp TAB          &kp PG_DN  &kp ENTER  &kp SPACE                  &kp RBRC       &kp RBKT     &kp RPAR   &kp BSLH       &mo FUNCTION
             >;
         };
 
@@ -59,11 +78,11 @@
 
         layer_fn {
             bindings = <
- &kp F1  &kp F2  &kp F3  &kp F4  &kp F5  &kp F6       &tog KEYPAD                                                   &mo MOD  &kp F7  &kp F8  &kp F9  &kp F10  &kp F11  &kp F12
- &trans  &trans  &trans  &trans  &trans  &trans       &to DEFAULT                                                     &none  &trans  &trans  &trans   &trans   &trans   &trans
- &trans  &trans  &trans  &trans  &trans  &trans        &to GAMING  &trans  &trans                  &trans  &trans     &none  &trans  &trans  &trans   &trans   &trans   &trans
- &trans  &trans  &trans  &trans  &trans  &trans                            &trans                  &trans                    &trans  &trans  &trans   &trans   &trans   &trans
- &trans  &trans  &trans  &trans  &trans                    &trans  &trans  &trans                  &trans  &trans    &trans          &trans  &trans   &trans   &trans   &trans
+ &kp F1  &kp F2  &kp F3  &kp F4   &kp F5   &kp F6       &tog KEYPAD                                                   &mo MOD  &kp F7  &kp F8     &kp F9      &kp F10   &kp F11  &kp F12
+ &trans  &trans  &trans  &trans   &trans   &trans       &to DEFAULT                                                     &none  &trans  &trans     &trans      &trans    &trans   &trans
+ &trans  &trans  &trans  &trans   &trans   &trans        &to GAMING  &trans  &trans                  &trans  &trans     &none  &trans  &trans     &trans      &trans    &trans   &trans
+ &trans  &trans  &trans  &trans   &trans   &trans                            &trans                  &trans                    &trans  &trans     &trans      &trans    &trans   &trans
+ &trans  &trans  &C_PP   &C_PREV  &C_NEXT                    &trans  &trans  &trans                  &trans  &trans    &trans          &C_VOL_UP  &C_VOL_DN   &C_MUTE   &trans   &trans
             >;
         };
 
@@ -86,6 +105,18 @@
   &mo FUNCTION  &kp GRAVE  &kp LGUI  &kp LEFT  &kp RIGHT                    &kp BSPC    &kp DEL   &kp END                  &kp PG_DN  &kp ENTER    &kp SPACE          &kp UP   &kp DOWN  &kp LBKT  &kp RBKT  &mo FUNCTION
             >;
         };
+
+        layer_nav {
+            bindings = <
+  &none         &none         &none         &none         &none         &none                  &none                                                       &none                   &none       &none       &none   &none   &none   &none
+  &none         &none         &none         &none         &none         &none                  &none                                                       &none                   &HOME       &PG_DN      &PG_UP  &END    &INS    &none
+  &none         &trans        &trans        &trans        &trans        &trans                 &none   &none   &none                       &none   &none   &none                   &LEFT       &DOWN       &UP     &RIGHT  &DEL    &K_APP
+  &none         &none         &none         &none         &none         &none                                  &none                       &none                                   &none       &none       &none   &none   &none   &none
+  &none         &none         &none         &none         &none                                &none   &none   &none                       &none   &none   &none                               &none       &none   &none   &none   &none
+            >;
+        };
+
+        layer_
 
     };
 };
