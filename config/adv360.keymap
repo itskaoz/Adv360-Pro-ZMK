@@ -6,12 +6,12 @@
  */
 
 #define DEFAULT   0
-#define KEYPAD    1
-#define FUNCTION  2
-#define MOD       3
-#define GAMING    4
-#define NAV       5
-#define KAANILEIN 6
+#define KAANILEIN 1
+#define KEYPAD    2
+#define FUNCTION  3
+#define MOD       4
+#define GAMING    5
+#define NAV       6
 #define VANILLA   7
 
 #include <behaviors.dtsi>
@@ -69,6 +69,16 @@
             >;
         };
 
+        layer_kaanilein {
+            bindings = <
+                &kp LGUI     &kp N1    &kp N2   &kp N3   &kp N4   &kp N5 &tog KEYPAD                                                                 &mo MOD &kp N6 &kp N7   &kp N8    &kp N9   &kp N0   &kp RGUI
+                &kp TAB      &kp Q     &kp W    &kp E    &kp R    &kp T  &to DEFAULT                                                                 &none   &kp Y  &kp U    &kp I     &kp O    &kp P    &kp BSLH
+                &kp ESC      &kp A     &kp S    &kp D    &kp F    &kp G  &tog KAANILEIN          &kp LCTRL   &kp LALT  &kp RALT  &kp RCTRL           &none   &kp H  &kp J    &kp K     &kp L    &kp SEMI &kp SQT
+                &kp LSHFT    &kp Z     &kp X    &kp C    &kp V    &kp B                                      &kp LGUI  &kp RGUI                              &kp N  &kp M    &kp COMMA &kp DOT  &kp FSLH &kp RSHFT
+                &mo FUNCTION &kp GRAVE &kp LPAR &kp LBKT &kp LBRC                       &kp BSPC &lt NAV DEL &kp MINUS &kp EQUAL &kp ENTER &kp SPACE                &kp RBRC &kp RBKT  &kp RPAR &kp BSLH &mo FUNCTION
+                >;
+        };
+
         layer_keypad {
             bindings = <
      &kp EQUAL     &kp N1    &kp N2    &kp N3     &kp N4  &kp N5              &trans                                                                 &mo MOD  &kp N6  &kp KP_NUM  &kp KP_EQUAL  &kp KP_DIVIDE  &kp KP_MULTIPLY     &kp MINUS
@@ -116,16 +126,6 @@
   &none         &trans        &trans        &trans        &trans        &trans                 &none   &none   &none                       &none   &none   &none                   &kp LEFT    &kp DOWN    &kp UP     &kp RIGHT  &kp DEL    &kp K_APP
   &none         &none         &none         &none         &none         &none                                  &none                       &none                                   &none       &none       &none      &none      &none      &none
   &none         &none         &none         &none         &none                                &none   &none   &none                       &none   &none   &none                               &none       &none      &none      &none      &none
-            >;
-        };
-
-        layer_kaanilein {
-                bindings = <
-        &kp LGUI     &kp N1    &kp N2   &kp N3   &kp N4   &kp N5 &tog KEYPAD                                                                 &mo MOD &kp N6 &kp N7   &kp N8    &kp N9   &kp N0   &kp RGUI
-        &kp TAB      &kp Q     &kp W    &kp E    &kp R    &kp T  &to DEFAULT                                                                 &none   &kp Y  &kp U    &kp I     &kp O    &kp P    &kp BSLH
-        &kp ESC      &kp A     &kp S    &kp D    &kp F    &kp G  &tog KAANILEIN          &kp LCTRL   &kp LALT  &kp RALT  &kp RCTRL           &none   &kp H  &kp J    &kp K     &kp L    &kp SEMI &kp SQT
-        &kp LSHFT    &kp Z     &kp X    &kp C    &kp V    &kp B                                      &kp LGUI  &kp RGUI                              &kp N  &kp M    &kp COMMA &kp DOT  &kp FSLH &kp RSHFT
-        &mo FUNCTION &kp GRAVE &kp LPAR &kp LBKT &kp LBRC                       &kp BSPC &lt NAV DEL &kp MINUS &kp EQUAL &kp ENTER &kp SPACE                &kp RBRC &kp RBKT  &kp RPAR &kp BSLH &mo FUNCTION
             >;
         };
 
